@@ -1,12 +1,16 @@
-module.exports = {
+const bancodedados = {
     banco: {
-        nome: 'Cubos Bank',
-        numero: '123',
-        agencia: '0001',
-        senha: 'Cubos123Bank'
+        nome: "Cubos Bank",
+        numero: "123",
+        agencia: "0001",
+        senha: "Cubos123Bank",
     },
+    identificadorContas: 1,
     contas: [],
     saques: [],
     depositos: [],
-    transferencias: []
+    transferencias: [],
 }
+
+
+module.exports = bancodedados;
