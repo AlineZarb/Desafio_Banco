@@ -71,7 +71,7 @@ Abaixo, listamos os possíveis `status code` esperados como resposta da API.
 
 ### Listar contas bancárias
 
-#### `GET` `/contas?senha_banco=123`
+#### `GET` /contas?senha_banco=123`
 
 Esse endpoint deverá listar todas as contas bancárias existentes.
 
