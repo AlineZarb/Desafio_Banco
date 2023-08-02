@@ -3,13 +3,13 @@ let { contas, identificadorContas } = require('../bancodedados');
 
 const listarContas = (req, res) => {
     const { contas, banco } = bancodedados;
-    const senhaBanco = req.query.senha;
+    const senha_banco = req.query.senha;
 
-    if (!senhaBanco) {
+    if (!senha_banco) {
         return res.send('Senha do banco é obrigatória.');
     }
 
-    if (senhaBanco !== banco.senha) {
+    if (senha_banco !== banco.senha) {
         return res.status(401).send('Senha do banco incorreta.');
     }
 
@@ -92,12 +92,12 @@ const cadastrarUsuario = (req, res) => {
 
 const atualizarCadastro = (req, res) => {
     const { nome, email, cpf, telefone, data_nascimento, senha } = req.body;
-    const { numero } = req.params;
+    const { numeroConta } = req.params;
     if (!nome || !email || !cpf || !telefone || !data_nascimento || !senha) {
         return res.status(400).json({ mensagem: 'Os dados a ser alterados devem ser informados.' });
     }
 
-    const conta = contas.find((conta) => Number(conta.numero) === Number(numero));
+    const conta = contas.find((conta) => Number(conta.numero) === Number(numeroConta));
 
     if (!conta) {
         return res.status(404).json({ mensagem: 'A conta não existe.' });
@@ -105,13 +105,13 @@ const atualizarCadastro = (req, res) => {
 
     const cpfJaExistente = contas.find((conta) => conta.usuario.cpf === cpf);
 
-    if (cpfJaExistente && Number(numero) !== Number(cpfJaExistente.numero)) {
+    if (cpfJaExistente && Number(numeroConta) !== Number(cpfJaExistente.numero)) {
         return res.json({ mensagem: 'Já existe cliente cadastrado com o CPF informado' });
     }
 
     const emailJaExistente = contas.find((conta) => conta.usuario.email === email);
 
-    if (emailJaExistente && Number(numero) !== Number(emailJaExistente.numero)) {
+    if (emailJaExistente && Number(numeroConta) !== Number(emailJaExistente.numero)) {
         return res.json({ mensagem: 'Já existe cliente cadastrado com o e-mail informado' });
     }
 
@@ -127,11 +127,15 @@ const atualizarCadastro = (req, res) => {
     return res.status(200).send({ mensagem: 'Cadastro atualizado com sucesso.' });
 }
 const excluirConta = (req, res) => {
-    const { numero } = req.params;
+    const { numeroConta } = req.params;
 
     let excluirC = contas.find((contas) => {
-        return contas.numero === Number(numero);
+        return contas.numero === Number(numeroConta);
     })
+
+    if (!excluirC) {
+        return res.status(404).json({ mensagem: 'A conta não existe.' });
+    }
 
     if (excluirC.saldo !== 0) {
         return res.status(400).json({
@@ -139,17 +143,13 @@ const excluirConta = (req, res) => {
                 'Não é possível excluir a conta com saldo diferente de zero.'
         });
     }
-
-    if (!excluirC) {
-        return res.status(404).json({ mensagem: 'A conta não existe.' });
-    }
     contas = contas.filter((contas) => {
-        return contas.numero !== Number(numero);
+        return contas.numero !== Number(numeroConta);
     });
 
     return res.json({ mensagem: 'Conta excluída com sucesso!.' });
 }
 module.exports = {
     listarContas, cadastrarUsuario,
-    atualizarCadastro, excluirConta, contas
+    atualizarCadastro, excluirConta
 }

@@ -74,7 +74,7 @@ const sacar = (req, res) => {
 
 const saldo = (req, res) => {
 
-    const numero_conta = Number(req.query.numero);
+    const numero_conta = Number(req.query.numero_conta);
     const senha = req.query.senha;
 
 
