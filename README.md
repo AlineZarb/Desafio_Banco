@@ -26,4 +26,4 @@ Express.js
 ### Status Codes
   Os status codes esperados como resposta da API serão 200 (requisição bem sucedida), 201 (requisição bem sucedida e algo foi criado), 400 (o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido) e 404 (o servidor não pode encontrar o recurso solicitado).
 
- ![Exemplo do Endpoint contas](https://imgur.com/elcJIml)https://imgur.com/elcJIml)
+ ![Exemplo do Endpoint contas](https://imgur.com/elcJIml)
