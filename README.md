@@ -21,6 +21,9 @@ Express.js
 - `POST /transacoes/transferir`: Realiza uma transferência entre contas bancárias.
 - `GET /contas/saldo?numero_conta=123&senha=123`: Consulta o saldo de uma conta bancária.
 - `GET /contas/extrato?numero_conta=123&senha=123`: Emite o extrato de uma conta bancária.
-  
+
+
 ### Status Codes
   Os status codes esperados como resposta da API serão 200 (requisição bem sucedida), 201 (requisição bem sucedida e algo foi criado), 400 (o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido) e 404 (o servidor não pode encontrar o recurso solicitado).
+
+ ![Exemplo do Endpoint contas] https://ibb.co/7Snyh22
