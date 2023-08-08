@@ -29,4 +29,6 @@ A API estará disponível em http://localhost:3000.
 
  ![Exemplo do Endpoint contas](Insomnia.png)
    Este é um exemplo de cadastro feito no insomnia, utilizando o endpoint - `POST /contas`: Cria uma nova conta bancária.
+
+   O projeto é um projeto piloto, o que significa que no futuro outras funcionalidades poderão ser implementadas, mas os dados do banco (nome, agência, etc.) serão imutáveis.
  
